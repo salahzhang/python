@@ -1,2 +1,2 @@
 # python
-python for course/test
+python for course/test/fun
