@@ -1,0 +1,56 @@
+In Ubuntu14.04 LTS
+tar -zxvf Python-2.7.12.tgz
+
+
+├── aclocal.m4
+├── config.guess
+├── config.sub
+├── configure
+├── configure.ac
+├── Demo
+├── Doc
+├── Grammar
+├── Include(Header file)
+├── install-sh
+├── Lib
+├── LICENSE
+├── Mac
+├── Makefile.pre.in
+├── Misc
+├── Modules(In C)
+├── Objects(int/list,etc)
+├── Parser(Scanner and Parser)
+├── PC
+├── PCbuild
+├── pyconfig.h.in
+├── Python(complier)
+├── README
+├── RISCOS
+├── setup.py
+└── Tools
+
+cd Objects/boolobject.c
+We find in line7-14:
+static int
+bool_print(PyBoolObject *self, FILE *fp, int flags)
+{
+    Py_BEGIN_ALLOW_THREADS
+    fputs(self->ob_ival == 0 ? "False" : "True", fp);
+    Py_END_ALLOW_THREADS
+    return 0;
+} 
+ 
+
+We can make it to:
+
+fputs(self->ob_ival != 0 ? "False" : "True", fp);
+
+
+make it install
+
+cd bin/python
+>>> print True
+False
+
+>>> print False
+True
